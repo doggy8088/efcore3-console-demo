@@ -16,9 +16,8 @@ namespace efc3
 
                 db.Blogs.Add(new Blog()
                 {
-                    BlogId = 1,
-                        Rating = 5,
-                        Url = "https://blog.miniasp.com"
+                    Rating = 5,
+                    Url = "https://blog.miniasp.com"
                 });
 
                 db.SaveChanges();
