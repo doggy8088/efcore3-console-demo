@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +9,7 @@ namespace efc3
     {
         static async Task Main(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=BlogDB;Integrated Security=true;");
-
-            using(var db = new BlogContext(optionsBuilder.Options))
+            using(var db = new BlogContext())
             {
                 db.Blogs.Add(new Blog()
                 {
@@ -33,7 +31,7 @@ namespace efc3
                     Console.WriteLine();
                 }
 
-                var blog_del = db.Blogs.Find(2);
+                var blog_del = db.Blogs.OrderByDescending(p => p.BlogId).Last();
                 db.Blogs.Remove(blog_del);
                 db.SaveChanges();
             }
