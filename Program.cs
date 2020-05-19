@@ -31,7 +31,7 @@ namespace efc3
                     Console.WriteLine();
                 }
 
-                var blog_del = db.Blogs.OrderByDescending(p => p.BlogId).Last();
+                var blog_del = db.Blogs.OrderBy(p => p.BlogId).Last();
                 db.Blogs.Remove(blog_del);
                 db.SaveChanges();
             }
